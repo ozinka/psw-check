@@ -1,4 +1,4 @@
 # psw-check
-Application allows IMMEDIATELY (in ms) check if your password is compromised and exist in a HUGE file (rockyou2024.txt ~ 145 GB)
+The Application allows you to examine PROMPTLY (ms) whether your password is compromised. It looks up against a HUGE database of leaked passwords (rockyou2024.txt ~ 145 GB). 
 
 ![alt text](password_checker.png)
