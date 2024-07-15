@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Checker</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/cerulean/bootstrap.min.css">
+</head>
+<body>
+<!-- Fixed Navbar -->
+<div class="navbar navbar-expand-lg fixed-top bg-primary" data-bs-theme="dark">
+    <div class="container">
+        <a href="../" class="navbar-brand">Password Checker</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<!-- Main Container -->
+<div class="container mt-5 pt-5">
+    <form class="row g-3" method="POST"
+    ">
+    <div class="col-auto">
+        <label for="inputPassword2" class="visually-hidden">Password</label>
+        <input type="text" name="password" class="form-control" id="inputPassword2" autocomplete = "off"
+               placeholder="Password" required style="text-security:disc; -webkit-text-security:disc;">
+    </div>
+    <div class=" col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Check</button>
+    </div>
+    </form>
+
+    {% if lines %}
+        <div class="row">
+            <div class="col-md-5">
+                <div class="card border-primary mb-3" style="max-width: 30rem;">
+                    <div class="card-header">Search Logs</div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            {% for line in lines %}
+                        <p>{{ line }}</p>
+                        {% endfor %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="card text-white bg-primary mb-3" style="max-width: 30rem;">
+                    <div class="card-header">Results</div>
+                    <div class="card-body">
+                        <h4 class="card-title">{{ search_time }}</h4>
+                        {% for result in results %}
+                        <p>{{ result }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+</div>
+
+<!-- Bootstrap JS Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+</html>
