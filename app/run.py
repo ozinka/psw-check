@@ -9,11 +9,18 @@ Date Created: 2024.07.16
 Version: 1.0
 
 Usage:
-    run
-    python3 flask_main.py
+    run:
+    set DATA_DIR=C:\path\to\folder
+    set PASSWORD_FILE=filename.txt
+    python3.exe run.py
+
+p.s. Environment variables DATA_DIR and PASSWORD_FILE can be set in .env file
 """
 from flask import Flask, render_template, request
 import search
+from dotenv import load_dotenv
+
+load_dotenv(override=False)
 
 app = Flask(__name__)
 
@@ -26,7 +33,6 @@ def main_page():
     search_time = ''
     if request.method == 'POST':
         password = request.form['password']
-        print(password)
 
     if password:
         lines, results, search_time = search.search(password)
@@ -35,4 +41,4 @@ def main_page():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5500)

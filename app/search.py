@@ -11,15 +11,18 @@ Version: 1.0
 Usage:
     search('some_text')
 """
-import time
+import time, os
 
+DATA_DIR = os.environ.get('DATA_DIR', '../data')
+PASSWORD_FILE = os.environ.get('PASSWORD_FILE', 'passwords.txt')
 
 def search(st: str) -> tuple:
     start_time = time.time()
     res = []
     res.append([])
-    with open("rockyou2024.txt", mode='r', encoding="utf-8",
-              errors='ignore') as f:
+    print(os.path.join(DATA_DIR, PASSWORD_FILE))
+    file_path = os.path.join(DATA_DIR, PASSWORD_FILE)
+    with open(file_path, mode='r', encoding="utf-8", errors='ignore') as f:
         start = 0
         f.seek(0, 2)  # os.SEEK_END = 2
         end = max = f.tell()
@@ -35,13 +38,13 @@ def search(st: str) -> tuple:
                 res[0].append(f'password is found')
                 break
             elif st > line:
-                start, pos, end = pos - 100, (pos + end) // 2, end # 100 - edge effect, should be optimized
+                start, pos, end = pos - 100, (pos + end) // 2, end  # 100 - edge effect, should be optimized
                 f.seek(pos)
                 f.readline()
                 line = f.readline().strip()
                 res[0].append(f'Pos {i}: {pos * 100 // max}%, line: {line:.10}')
             else:
-                start, pos, end = start - 100, (pos + start) // 2, pos + 100# 100 - edge effect, should be optimized
+                start, pos, end = start - 100, (pos + start) // 2, pos + 100  # 100 - edge effect, should be optimized
                 f.seek(pos)
                 f.readline()
                 line = f.readline().strip()
